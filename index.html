@@ -58,6 +58,19 @@
   .product-card .price{color:var(--smoke);font-size:14px;margin:2px 0 12px;}
   .product-card .btn{margin-top:auto;display:block;text-align:center;background:var(--grad);color:#1A0F08;font-weight:700;border:none;border-radius:9px;padding:10px 14px;font-family:'Manrope',sans-serif;font-size:14px;text-decoration:none;}
 
+  /* Temas por sección — colores propios inspirados en cada plataforma, sin usar sus logos */
+  .theme-freefire .product-card{background:linear-gradient(160deg,#241009,#160B06);border-color:#3A1B10;border-top:3px solid var(--ember);}
+  .theme-robux .product-card{background:#181B22;border-color:#2B303B;border-top:3px solid #E4E4E4;}
+  .theme-robux .card-tag{background:#2B303B;color:#E4E4E4;}
+  .theme-instagram .product-card{background:linear-gradient(135deg,#405DE6,#833AB4,#C13584,#E1306C,#F77737);border:none;}
+  .theme-instagram .product-card .qty{color:#fff;}
+  .theme-instagram .product-card .price{color:rgba(255,255,255,0.85);}
+  .theme-instagram .card-tag{background:rgba(0,0,0,0.3);color:#fff;}
+  .theme-bloodstrike .product-card{background:linear-gradient(160deg,#1C1B14,#262115);border-color:#3A3320;border-top:3px solid #B3231C;}
+  .section-block{margin-bottom:28px;}
+  .section-block:last-child{margin-bottom:0;}
+  .sub-heading{font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;margin:0 0 10px;color:var(--bone);}
+
   /* Footer */
   footer{border-top:1px solid var(--ash-800);padding:clamp(32px,6vw,48px) 0;text-align:center;}
   footer .header-cta{display:inline-block;margin-bottom:16px;}
@@ -120,10 +133,8 @@
   <nav class="chip-nav">
     <a href="#free-fire">Free Fire</a>
     <a href="#robux">Robux</a>
-    <a href="#ig-seguidores">Seguidores IG</a>
-    <a href="#ig-likes">Me gusta IG</a>
-    <a href="#bloodstrike-gold">Blood Strike Gold</a>
-    <a href="#bloodstrike-pass">Blood Strike Pases</a>
+    <a href="#instagram">Instagram</a>
+    <a href="#bloodstrike">Blood Strike</a>
   </nav>
 </section>
 
@@ -150,22 +161,30 @@
 <script src="./productos.js"></script>
 <script>
   function renderCatalog(){
-    const order = ["free-fire","robux","ig-seguidores","ig-likes","bloodstrike-gold","bloodstrike-pass"];
-    const html = order.map((slug) => {
-      const cat = CATEGORIES[slug];
-      const products = PRODUCTS.filter((p) => p.category === slug);
-      const cards = products.map((p) => `
-        <div class="product-card">
-          <span class="qty">${p.name}</span>
-          ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ""}
-          <p class="price">$${formatPrice(p.price)} ARS</p>
-          <a class="btn" href="${buildWhatsAppLink(p)}">Comprar ahora</a>
-        </div>`).join("");
+    const html = SECTIONS.map((section) => {
+      const cats = section.categories.map((slug) => CATEGORIES[slug]);
+      const sameBrand = cats.every((c) => c.subBrand === cats[0].subBrand);
+      const eyebrow = sameBrand ? `<p class="section-label">${cats[0].subBrand}</p>` : "";
+      const blocks = section.categories.map((slug) => {
+        const cat = CATEGORIES[slug];
+        const products = PRODUCTS.filter((p) => p.category === slug);
+        const cards = products.map((p) => `
+          <div class="product-card">
+            <span class="qty">${p.name}</span>
+            ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ""}
+            <p class="price">$${formatPrice(p.price)} ARS</p>
+            <a class="btn" href="${buildWhatsAppLink(p)}">Comprar ahora</a>
+          </div>`).join("");
+        const blockHeading = section.categories.length > 1
+          ? `<h3 class="sub-heading">${sameBrand ? cat.subLabel : cat.subBrand}</h3>`
+          : "";
+        return `<div class="section-block">${blockHeading}<div class="product-grid">${cards}</div></div>`;
+      }).join("");
       return `
-        <section class="cat-section" id="${slug}">
-          <p class="section-label">${cat.subBrand}</p>
-          <h2 class="section-title">${cat.label}</h2>
-          <div class="product-grid">${cards}</div>
+        <section class="cat-section" id="${section.id}">
+          ${eyebrow}
+          <h2 class="section-title">${section.title}</h2>
+          <div class="theme-${section.theme}">${blocks}</div>
         </section>`;
     }).join("");
     document.getElementById("catalogo").innerHTML = html;
