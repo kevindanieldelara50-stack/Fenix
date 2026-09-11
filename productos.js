@@ -9,12 +9,20 @@ const WHATSAPP_NUMBER = "5493757626730";
 const CATEGORIES = {
   "free-fire":        { subBrand: "SATORU DIMAS",          label: "Diamantes Free Fire" },
   "robux":             { subBrand: "SATO ROBUXS",           label: "Robux" },
-  "ig-seguidores":     { subBrand: "INSTAGRAM SEGUIDORES",  label: "Seguidores de Instagram" },
-  "ig-likes":          { subBrand: "ME GUSTA ❤️",           label: "Me gusta de Instagram" },
-  "bloodstrike-gold":  { subBrand: "SATORU BLOODS",         label: "Gold Blood Strike" },
-  "bloodstrike-pass":  { subBrand: "SATORU BLOODS",         label: "Pases Blood Strike" },
+  "ig-seguidores":     { subBrand: "INSTAGRAM SEGUIDORES",  label: "Seguidores de Instagram", subLabel: "Seguidores" },
+  "ig-likes":          { subBrand: "ME GUSTA ❤️",           label: "Me gusta de Instagram",   subLabel: "Me gusta" },
+  "bloodstrike-gold":  { subBrand: "SATORU BLOODS",         label: "Gold Blood Strike",        subLabel: "Gold" },
+  "bloodstrike-pass":  { subBrand: "SATORU BLOODS",         label: "Pases Blood Strike",       subLabel: "Pases" },
 };
 
+// Agrupa las categorías en las 4 secciones que se muestran en la home.
+// Cada sección tiene su propio "theme" (estilo visual) — ver el CSS de index.html.
+const SECTIONS = [
+  { id: "free-fire",   title: "Diamantes Free Fire", theme: "freefire",    categories: ["free-fire"] },
+  { id: "robux",       title: "Robux",               theme: "robux",      categories: ["robux"] },
+  { id: "instagram",   title: "Instagram",           theme: "instagram",  categories: ["ig-seguidores", "ig-likes"] },
+  { id: "bloodstrike", title: "Blood Strike",        theme: "bloodstrike",categories: ["bloodstrike-gold", "bloodstrike-pass"] },
+];
 const PRODUCTS = [
   // ---- Free Fire — Diamantes ----
   { id: "ff-110",   category: "free-fire", name: "110 💎",   quantity: 110,   price: 1700 },
@@ -156,5 +164,4 @@ function buildWhatsAppLink(product) {
 // Devuelve todos los productos de una categoría (para renderizar el catálogo).
 function getProductsByCategory(categorySlug) {
   return PRODUCTS.filter((p) => p.category === categorySlug);
-   }
-    
+}
