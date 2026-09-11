@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satoru Fénix Events — Recargas y servicios digitales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ash-950:#130E0C; --ash-900:#1E1613; --ash-800:#2B2019;
+    --ember:#F0331A; --amber:#F5A93F; --bone:#F5EDE4; --smoke:#B7A599;
+    --grad: linear-gradient(135deg, var(--ember), var(--amber));
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--ash-950);color:var(--bone);font-family:'Manrope',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 clamp(18px,5vw,32px);}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(19,14,12,0.9);backdrop-filter:blur(6px);border-bottom:1px solid var(--ash-800);}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;}
+  .brand svg{width:28px;height:28px;}
+  .header-cta{background:var(--grad);color:#1A0F08;font-weight:700;font-size:13px;padding:9px 14px;border-radius:8px;text-decoration:none;white-space:nowrap;}
+
+  /* Hero */
+  .hero{text-align:center;padding:clamp(40px,9vw,72px) 0 clamp(32px,6vw,48px);}
+  .mark-glow{position:relative;display:inline-block;}
+  .mark-glow::before{content:'';position:absolute;inset:-35%;background:radial-gradient(circle, rgba(240,51,26,0.32) 0%, rgba(240,51,26,0) 70%);z-index:0;}
+  .mark-glow svg{position:relative;z-index:1;display:block;}
+  .hero .mark{width:clamp(80px,16vw,104px);height:auto;margin-bottom:16px;transform-origin:50% 80%;}
+  .hero h1{font-size:clamp(28px,6vw,44px);font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;}
+  .hero p.tagline{color:var(--smoke);font-size:clamp(15px,2.4vw,18px);max-width:46ch;margin:0 auto 28px;}
+  .chip-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  .chip-nav a{background:var(--ash-900);border-left:3px solid var(--ember);border-radius:6px;padding:9px 14px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:13px;text-decoration:none;}
+
+  /* Cómo comprar */
+  .how-to{padding:clamp(36px,7vw,56px) 0;border-top:1px solid var(--ash-800);border-bottom:1px solid var(--ash-800);}
+  .how-to h2{font-size:clamp(20px,3.6vw,26px);margin-bottom:22px;text-align:center;}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+  .step{background:var(--ash-900);border:1px solid var(--ash-800);border-radius:14px;padding:18px;}
+  .step .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:var(--ember);display:block;margin-bottom:6px;}
+  .step p{margin:0;font-size:14px;color:var(--bone);}
+
+  /* Catálogo */
+  #catalogo{padding:clamp(40px,7vw,60px) 0;}
+  .cat-section{margin-bottom:clamp(40px,7vw,56px);}
+  .section-label{font-size:13px;color:var(--smoke);margin:0 0 4px;}
+  .section-title{font-size:clamp(19px,3.2vw,25px);font-weight:700;margin-bottom:18px;}
+  .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px;}
+  .product-card{background:var(--ash-900);border:1px solid var(--ash-800);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:4px;}
+  .product-card .qty{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;}
+  .product-card .card-tag{align-self:flex-start;background:var(--ash-800);color:var(--amber);font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;margin:2px 0;}
+  .product-card .price{color:var(--smoke);font-size:14px;margin:2px 0 12px;}
+  .product-card .btn{margin-top:auto;display:block;text-align:center;background:var(--grad);color:#1A0F08;font-weight:700;border:none;border-radius:9px;padding:10px 14px;font-family:'Manrope',sans-serif;font-size:14px;text-decoration:none;}
+
+  /* Footer */
+  footer{border-top:1px solid var(--ash-800);padding:clamp(32px,6vw,48px) 0;text-align:center;}
+  footer .header-cta{display:inline-block;margin-bottom:16px;}
+  footer p{color:var(--smoke);font-size:13px;margin:4px 0;}
+
+  @media (prefers-reduced-motion: no-preference){
+    html{scroll-behavior:smooth;}
+    .mark-glow{animation:rise 900ms ease-out;}
+    .hero .mark{animation:candle-sway 4500ms ease-in-out infinite;}
+    .mark-glow::before{animation:pulse-glow 3800ms ease-in-out infinite;}
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes pulse-glow{0%,100%{opacity:0.4;}50%{opacity:0.75;}}
+  @keyframes candle-sway{
+    0%{transform:rotate(0deg) scale(1);}
+    22%{transform:rotate(-1.1deg) scale(1.012);}
+    48%{transform:rotate(0.7deg) scale(0.99);}
+    74%{transform:rotate(-0.5deg) scale(1.008);}
+    100%{transform:rotate(0deg) scale(1);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs><linearGradient id="gradHead" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#F0331A"/><stop offset="0.68" stop-color="#F0331A"/><stop offset="1" stop-color="#F5A93F"/>
+        </linearGradient></defs>
+        <g fill="url(#gradHead)">
+          <g transform="translate(100,160) rotate(-30) scale(0.68)"><path d="M0,0 C-22,-20 -18,-58 0,-100 C18,-58 22,-20 0,0 Z"/></g>
+          <g transform="translate(100,160) rotate(30) scale(0.68)"><path d="M0,0 C-22,-20 -18,-58 0,-100 C18,-58 22,-20 0,0 Z"/></g>
+          <g transform="translate(100,160) scale(1)"><path d="M0,0 C-22,-20 -18,-58 0,-100 C18,-58 22,-20 0,0 Z"/></g>
+        </g>
+      </svg>
+      Satoru Fénix Events
+    </div>
+    <a class="header-cta" id="headerWa" href="#">WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="mark-glow">
+    <svg class="mark" viewBox="0 0 200 200" role="img" aria-label="Marca Satoru Fénix">
+      <defs><linearGradient id="gradHero" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0" stop-color="#F0331A"/><stop offset="0.68" stop-color="#F0331A"/><stop offset="1" stop-color="#F5A93F"/>
+      </linearGradient></defs>
+      <g fill="url(#gradHero)">
+        <g transform="translate(100,160) rotate(-30) scale(0.68)"><path d="M0,0 C-22,-20 -18,-58 0,-100 C18,-58 22,-20 0,0 Z"/></g>
+        <g transform="translate(100,160) rotate(30) scale(0.68)"><path d="M0,0 C-22,-20 -18,-58 0,-100 C18,-58 22,-20 0,0 Z"/></g>
+        <g transform="translate(100,160) scale(1)"><path d="M0,0 C-22,-20 -18,-58 0,-100 C18,-58 22,-20 0,0 Z"/></g>
+      </g>
+      <g transform="translate(100,160) scale(0.36)"><path d="M0,0 C-22,-20 -18,-58 0,-100 C18,-58 22,-20 0,0 Z" fill="#F5A93F"/></g>
+    </svg>
+  </div>
+  <h1>Recargas y servicios digitales</h1>
+  <p class="tagline">Elegí tu producto y continuá la compra por WhatsApp — rápido, claro y sin vueltas.</p>
+  <nav class="chip-nav">
+    <a href="#free-fire">Free Fire</a>
+    <a href="#robux">Robux</a>
+    <a href="#ig-seguidores">Seguidores IG</a>
+    <a href="#ig-likes">Me gusta IG</a>
+    <a href="#bloodstrike-gold">Blood Strike Gold</a>
+    <a href="#bloodstrike-pass">Blood Strike Pases</a>
+  </nav>
+</section>
+
+<section class="how-to wrap">
+  <h2>Cómo comprar</h2>
+  <div class="steps">
+    <div class="step"><span class="num">1</span><p>Elegís tu producto y la cantidad en el catálogo.</p></div>
+    <div class="step"><span class="num">2</span><p>Tocás "Comprar ahora" y se abre WhatsApp con el pedido ya armado.</p></div>
+    <div class="step"><span class="num">3</span><p>Te confirmamos el pedido y te pasamos los métodos de pago disponibles.</p></div>
+    <div class="step"><span class="num">4</span><p>Pagás, nos mandás el comprobante y procesamos la entrega.</p></div>
+  </div>
+</section>
+
+<div id="catalogo" class="wrap"></div>
+
+<footer>
+  <div class="wrap">
+    <a class="header-cta" id="footerWa" href="#">Escribinos por WhatsApp</a>
+    <p>El pago se coordina por WhatsApp una vez confirmado tu pedido.</p>
+    <p>Satoru Fénix Events — Argentina</p>
+  </div>
+</footer>
+
+<script src="./productos.js"></script>
+<script>
+  function renderCatalog(){
+    const order = ["free-fire","robux","ig-seguidores","ig-likes","bloodstrike-gold","bloodstrike-pass"];
+    const html = order.map((slug) => {
+      const cat = CATEGORIES[slug];
+      const products = PRODUCTS.filter((p) => p.category === slug);
+      const cards = products.map((p) => `
+        <div class="product-card">
+          <span class="qty">${p.name}</span>
+          ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ""}
+          <p class="price">$${formatPrice(p.price)} ARS</p>
+          <a class="btn" href="${buildWhatsAppLink(p)}">Comprar ahora</a>
+        </div>`).join("");
+      return `
+        <section class="cat-section" id="${slug}">
+          <p class="section-label">${cat.subBrand}</p>
+          <h2 class="section-title">${cat.label}</h2>
+          <div class="product-grid">${cards}</div>
+        </section>`;
+    }).join("");
+    document.getElementById("catalogo").innerHTML = html;
+  }
+
+  function wireGeneralWhatsApp(){
+    const msg = "Hola Satoru 👋, tengo una consulta.";
+    const link = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    document.getElementById("headerWa").href = link;
+    document.getElementById("footerWa").href = link;
+  }
+
+  renderCatalog();
+  wireGeneralWhatsApp();
+</script>
+</body>
+</html>
