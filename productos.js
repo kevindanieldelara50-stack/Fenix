@@ -84,13 +84,12 @@ const PRODUCTS = [
 const PAYMENT_ALIAS = "satorualias99";
 
 const MESSAGE_TEMPLATES = {
-  "free-fire": (p) => `Hola Satoru 👋
-Quiero realizar una compra.
+  "free-fire": (p) => `Quiero realizar una compra.
 
 Producto: ${p.name} de Free Fire
 Precio: $${formatPrice(p.price)} ARS
 
-Mi ID de jugador:
+Mi ID es:
 [ESCRIBIR ID]
 
 Alias: ${PAYMENT_ALIAS}
@@ -98,8 +97,7 @@ Alias: ${PAYMENT_ALIAS}
 Quedo atento a las instrucciones de pago.
 En cuanto realice el pago te envío el comprobante.`,
 
-  "robux": (p) => `Hola Satoru 👋
-Quiero realizar una compra.
+  "robux": (p) => `Quiero realizar una compra.
 
 Producto: ${p.name}
 Precio: $${formatPrice(p.price)} ARS
@@ -108,8 +106,7 @@ Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones para canjear el código en mi cuenta.`,
 
-  "ig-seguidores": (p) => `Hola Satoru 👋
-Quiero realizar una compra.
+  "ig-seguidores": (p) => `Quiero realizar una compra.
 
 Servicio: ${p.name} de Instagram
 Precio: $${formatPrice(p.price)} ARS
@@ -121,8 +118,7 @@ Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones para continuar.`,
 
-  "ig-likes": (p) => `Hola Satoru 👋
-Quiero realizar una compra.
+  "ig-likes": (p) => `Quiero realizar una compra.
 
 Servicio: ${p.name} de Instagram
 Precio: $${formatPrice(p.price)} ARS
@@ -134,26 +130,24 @@ Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones para continuar.`,
 
-  "bloodstrike-gold": (p) => `Hola Satoru 👋
-Quiero realizar una compra.
+  "bloodstrike-gold": (p) => `Quiero realizar una compra.
 
 Producto: ${p.name} de Blood Strike
 Precio: $${formatPrice(p.price)} ARS
 
-Mi ID de jugador:
+Mi ID es:
 [ESCRIBIR ID]
 
 Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones de pago.`,
 
-  "bloodstrike-pass": (p) => `Hola Satoru 👋
-Quiero realizar una compra.
+  "bloodstrike-pass": (p) => `Quiero realizar una compra.
 
 Producto: ${p.name}
 Precio: $${formatPrice(p.price)} ARS
 
-Mi ID de jugador:
+Mi ID es:
 [ESCRIBIR ID]
 
 Alias: ${PAYMENT_ALIAS}
@@ -175,4 +169,4 @@ function buildWhatsAppLink(product) {
 // Devuelve todos los productos de una categoría (para renderizar el catálogo).
 function getProductsByCategory(categorySlug) {
   return PRODUCTS.filter((p) => p.category === categorySlug);
-}
+  }
