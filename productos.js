@@ -81,6 +81,8 @@ const PRODUCTS = [
 // Plantillas de mensaje de WhatsApp por categoría — cada una arma el mensaje
 // según lo que definiste en tu documento original. Robux no pide usuario ni
 // contraseña: el canje lo hace el cliente con el código, no nosotros.
+const PAYMENT_ALIAS = "satorualias99";
+
 const MESSAGE_TEMPLATES = {
   "free-fire": (p) => `Hola Satoru 👋
 Quiero realizar una compra.
@@ -91,8 +93,7 @@ Precio: $${formatPrice(p.price)} ARS
 Mi ID de jugador:
 [ESCRIBIR ID]
 
-Mi alias/nombre:
-[ESCRIBIR ALIAS]
+Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones de pago.
 En cuanto realice el pago te envío el comprobante.`,
@@ -102,6 +103,8 @@ Quiero realizar una compra.
 
 Producto: ${p.name}
 Precio: $${formatPrice(p.price)} ARS
+
+Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones para canjear el código en mi cuenta.`,
 
@@ -114,6 +117,8 @@ Precio: $${formatPrice(p.price)} ARS
 Mi usuario/perfil de Instagram:
 [ESCRIBIR USUARIO O ENLACE]
 
+Alias: ${PAYMENT_ALIAS}
+
 Quedo atento a las instrucciones para continuar.`,
 
   "ig-likes": (p) => `Hola Satoru 👋
@@ -124,6 +129,8 @@ Precio: $${formatPrice(p.price)} ARS
 
 Mi usuario/perfil o el link de la publicación:
 [ESCRIBIR USUARIO O LINK]
+
+Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones para continuar.`,
 
@@ -136,6 +143,8 @@ Precio: $${formatPrice(p.price)} ARS
 Mi ID de jugador:
 [ESCRIBIR ID]
 
+Alias: ${PAYMENT_ALIAS}
+
 Quedo atento a las instrucciones de pago.`,
 
   "bloodstrike-pass": (p) => `Hola Satoru 👋
@@ -146,6 +155,8 @@ Precio: $${formatPrice(p.price)} ARS
 
 Mi ID de jugador:
 [ESCRIBIR ID]
+
+Alias: ${PAYMENT_ALIAS}
 
 Quedo atento a las instrucciones de pago.`,
 };
