@@ -19,7 +19,7 @@ const CATEGORIES = {
 // Cada sección tiene su propio "theme" (estilo visual) — ver el CSS de index.html.
 const SECTIONS = [
   { id: "free-fire",   title: "Diamantes Free Fire", theme: "freefire",    categories: ["free-fire"] },
-  { id: "robux",       title: "Robux",               theme: "robux",      categories: ["robux"] },
+  { id: "robux",       title: "Robux",               theme: "robux",      categories: ["robux"], note: "Entrega en 6 a 7 días hábiles" },
   { id: "instagram",   title: "Instagram",           theme: "instagram",  categories: ["ig-seguidores", "ig-likes"] },
   { id: "bloodstrike", title: "Blood Strike",        theme: "bloodstrike",categories: ["bloodstrike-gold", "bloodstrike-pass"] },
 ];
@@ -81,7 +81,6 @@ const PRODUCTS = [
 // Plantillas de mensaje de WhatsApp por categoría — cada una arma el mensaje
 // según lo que definiste en tu documento original. Robux no pide usuario ni
 // contraseña: el canje lo hace el cliente con el código, no nosotros.
-const PAYMENT_ALIAS = "satorualias99";
 
 const MESSAGE_TEMPLATES = {
   "free-fire": (p) => `Quiero realizar una compra.
@@ -90,21 +89,12 @@ Producto: ${p.name} de Free Fire
 Precio: $${formatPrice(p.price)} ARS
 
 Mi ID es:
-[ESCRIBIR ID]
-
-Alias: ${PAYMENT_ALIAS}
-
-Quedo atento a las instrucciones de pago.
-En cuanto realice el pago te envío el comprobante.`,
+[ESCRIBIR ID]`,
 
   "robux": (p) => `Quiero realizar una compra.
 
 Producto: ${p.name}
-Precio: $${formatPrice(p.price)} ARS
-
-Alias: ${PAYMENT_ALIAS}
-
-Quedo atento a las instrucciones para canjear el código en mi cuenta.`,
+Precio: $${formatPrice(p.price)} ARS`,
 
   "ig-seguidores": (p) => `Quiero realizar una compra.
 
@@ -112,11 +102,7 @@ Servicio: ${p.name} de Instagram
 Precio: $${formatPrice(p.price)} ARS
 
 Mi usuario/perfil de Instagram:
-[ESCRIBIR USUARIO O ENLACE]
-
-Alias: ${PAYMENT_ALIAS}
-
-Quedo atento a las instrucciones para continuar.`,
+[ESCRIBIR USUARIO O ENLACE]`,
 
   "ig-likes": (p) => `Quiero realizar una compra.
 
@@ -124,11 +110,7 @@ Servicio: ${p.name} de Instagram
 Precio: $${formatPrice(p.price)} ARS
 
 Mi usuario/perfil o el link de la publicación:
-[ESCRIBIR USUARIO O LINK]
-
-Alias: ${PAYMENT_ALIAS}
-
-Quedo atento a las instrucciones para continuar.`,
+[ESCRIBIR USUARIO O LINK]`,
 
   "bloodstrike-gold": (p) => `Quiero realizar una compra.
 
@@ -136,11 +118,7 @@ Producto: ${p.name} de Blood Strike
 Precio: $${formatPrice(p.price)} ARS
 
 Mi ID es:
-[ESCRIBIR ID]
-
-Alias: ${PAYMENT_ALIAS}
-
-Quedo atento a las instrucciones de pago.`,
+[ESCRIBIR ID]`,
 
   "bloodstrike-pass": (p) => `Quiero realizar una compra.
 
@@ -148,11 +126,7 @@ Producto: ${p.name}
 Precio: $${formatPrice(p.price)} ARS
 
 Mi ID es:
-[ESCRIBIR ID]
-
-Alias: ${PAYMENT_ALIAS}
-
-Quedo atento a las instrucciones de pago.`,
+[ESCRIBIR ID]`,
 };
 
 function formatPrice(amount) {
@@ -169,4 +143,4 @@ function buildWhatsAppLink(product) {
 // Devuelve todos los productos de una categoría (para renderizar el catálogo).
 function getProductsByCategory(categorySlug) {
   return PRODUCTS.filter((p) => p.category === categorySlug);
-  }
+}
