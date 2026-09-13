@@ -36,16 +36,16 @@
   .hero h1{font-size:clamp(28px,6vw,44px);font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;}
   .hero p.tagline{color:var(--smoke);font-size:clamp(15px,2.4vw,18px);max-width:46ch;margin:0 auto 28px;}
   .chip-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
-  .chip-nav a{border-radius:6px;padding:9px 14px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:13px;text-decoration:none;}
+  .chip-nav a{border-radius:8px;padding:12px 20px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;}
   .chip-nav a.theme-freefire{background:var(--grad);color:#1A0F08;}
   .chip-nav a.theme-robux{background:#0B0C0E;border:1px solid #2E333B;color:var(--bone);}
   .chip-nav a.theme-instagram{background:linear-gradient(135deg,#405DE6,#833AB4,#C13584,#E1306C,#F77737);color:#fff;}
   .chip-nav a.theme-bloodstrike{background:linear-gradient(160deg,#2B1710,#5C1712);color:var(--bone);}
 
   .back-to-top{
-    position:fixed;right:18px;bottom:18px;z-index:30;
+    position:fixed;right:18px;bottom:max(18px, env(safe-area-inset-bottom) + 14px);z-index:30;
     width:46px;height:46px;border-radius:50%;
-    background:var(--grad);color:#1A0F08;
+    background:var(--grad);color:#1A0F08;border:none;font:inherit;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 6px 18px rgba(0,0,0,0.45);
     opacity:0;pointer-events:none;transition:opacity 200ms ease;
@@ -173,9 +173,9 @@
   </div>
 </footer>
 
-<a href="#top" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+<button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</a>
+</button>
 
 <script src="./productos.js"></script>
 <script>
@@ -225,11 +225,28 @@
     };
     window.addEventListener("scroll", toggle, { passive: true });
     toggle();
+    btn.addEventListener("click", () => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  }
+
+  function wireSmoothNav(){
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll(".chip-nav a").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      });
+    });
   }
 
   renderCatalog();
   wireGeneralWhatsApp();
   wireBackToTop();
+  wireSmoothNav();
 </script>
 </body>
 </html>
