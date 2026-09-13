@@ -19,7 +19,7 @@ const CATEGORIES = {
 // Cada sección tiene su propio "theme" (estilo visual) — ver el CSS de index.html.
 const SECTIONS = [
   { id: "free-fire",   title: "Diamantes Free Fire", theme: "freefire",    categories: ["free-fire"] },
-  { id: "robux",       title: "Robux",               theme: "robux",      categories: ["robux"], note: "Entrega en 6 a 7 días hábiles" },
+  { id: "robux",       title: "Robux",               theme: "robux",      categories: ["robux"], note: "LOS ROBUXS TARDAN EN LLEGAR HASTA 6 DIAS" },
   { id: "instagram",   title: "Instagram",           theme: "instagram",  categories: ["ig-seguidores", "ig-likes"] },
   { id: "bloodstrike", title: "Blood Strike",        theme: "bloodstrike",categories: ["bloodstrike-gold", "bloodstrike-pass"] },
 ];
