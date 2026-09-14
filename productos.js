@@ -13,15 +13,17 @@ const CATEGORIES = {
   "ig-likes":          { subBrand: "ME GUSTA ❤️",           label: "Me gusta de Instagram",   subLabel: "Me gusta" },
   "bloodstrike-gold":  { subBrand: "SATORU BLOODS",         label: "Gold Blood Strike",        subLabel: "Gold" },
   "bloodstrike-pass":  { subBrand: "SATORU BLOODS",         label: "Pases Blood Strike",       subLabel: "Pases" },
+  "internet":          { subBrand: "SATORU NET",            label: "Internet" },
 };
 
-// Agrupa las categorías en las 4 secciones que se muestran en la home.
+// Agrupa las categorías en las secciones que se muestran en la home.
 // Cada sección tiene su propio "theme" (estilo visual) — ver el CSS de index.html.
 const SECTIONS = [
   { id: "free-fire",   title: "Diamantes Free Fire", theme: "freefire",    categories: ["free-fire"] },
   { id: "robux",       title: "Robux",               theme: "robux",      categories: ["robux"], note: "LOS ROBUXS TARDAN EN LLEGAR HASTA 6 DIAS" },
   { id: "instagram",   title: "Instagram",           theme: "instagram",  categories: ["ig-seguidores", "ig-likes"] },
   { id: "bloodstrike", title: "Blood Strike",        theme: "bloodstrike",categories: ["bloodstrike-gold", "bloodstrike-pass"] },
+  { id: "internet",    title: "Internet",            theme: "internet",   categories: ["internet"] },
 ];
 const PRODUCTS = [
   // ---- Free Fire — Diamantes ----
@@ -76,6 +78,11 @@ const PRODUCTS = [
   { id: "bsp-levelup", category: "bloodstrike-pass", name: "Level-Up Pass",      quantity: 1, price: 3767 },
   { id: "bsp-elite",   category: "bloodstrike-pass", name: "Strike Pass Elite",   quantity: 1, price: 7667 },
   { id: "bsp-premium", category: "bloodstrike-pass", name: "Strike Pass Premium", quantity: 1, price: 14567 },
+
+  // ---- Internet ----
+  { id: "net-7",  category: "internet", name: "7 días",  quantity: 7,  price: 3500 },
+  { id: "net-15", category: "internet", name: "15 días", quantity: 15, price: 6500 },
+  { id: "net-30", category: "internet", name: "30 días", quantity: 30, price: 10100 },
 ];
 
 // Plantillas de mensaje de WhatsApp por categoría — cada una arma el mensaje
@@ -127,6 +134,11 @@ Precio: $${formatPrice(p.price)} ARS
 
 Mi ID es:
 [ESCRIBIR ID]`,
+
+  "internet": (p) => `Quiero realizar una compra.
+
+Producto: ${p.name} de Internet
+Precio: $${formatPrice(p.price)} ARS`,
 };
 
 function formatPrice(amount) {
